@@ -1,0 +1,25 @@
+{
+  "name": "swisscome-live-session",
+  "version": "0.0.1",
+  "description": "A Swisscom live coding session",
+  "main": "index.js",
+  "scripts": {
+    "test.appium.local": "wdio ./test/configs/wdio.appium.local.conf.js"
+  },
+  "author": "wswebcreation",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@wdio/cli": "^5.7.1",
+    "@wdio/dot-reporter": "^5.7.0",
+    "@wdio/jasmine-framework": "^5.7.0",
+    "@wdio/local-runner": "^5.7.1",
+    "@wdio/spec-reporter": "^5.7.0",
+    "@wdio/sync": "^5.7.1",
+    "webdriverio": "^5.7.1",
+    "yargs": "^13.2.2"
+  }
+}
