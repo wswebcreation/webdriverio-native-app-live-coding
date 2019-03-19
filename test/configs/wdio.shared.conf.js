@@ -8,7 +8,8 @@ exports.config = {
     // Specify Test Files
     // ==================
     specs: [
-        './test/specs/**/*.js',
+        // './test/specs/**/*.js',
+        './test/specs/**/item-list.spec.js',
     ],
 
     // ============
