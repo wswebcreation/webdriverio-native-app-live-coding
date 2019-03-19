@@ -10,9 +10,6 @@ exports.config = {
     specs: [
         './test/specs/**/*.js',
     ],
-    filesToWatch: [
-        './test/specs/**/*.js',
-    ],
 
     // ============
     // Capabilities
