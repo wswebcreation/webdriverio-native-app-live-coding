@@ -1,6 +1,6 @@
 /**
  * This src is from the appium-boilerplate
- * src: https://github.com/webdriverio/appium-boilerplate/blob/master/tests/helpers/Gestures.js
+ * src: https://github.com/webbrowserio/appium-boilerplate/blob/master/tests/helpers/Gestures.js
  */
 
 let SCREEN_SIZE;
@@ -108,7 +108,7 @@ class Gestures {
    * </pre>
    */
   static swipeOnPercentage(from, to) {
-    SCREEN_SIZE = SCREEN_SIZE || driver.getWindowRect();
+    SCREEN_SIZE = SCREEN_SIZE || browser.getWindowRect();
     const pressOptions = this._getDeviceScreenCoordinates(SCREEN_SIZE, from);
     const moveToScreenCoordinates = this._getDeviceScreenCoordinates(SCREEN_SIZE, to);
     this.swipe(
@@ -131,7 +131,7 @@ class Gestures {
    * </pre>
    */
   static swipe(from, to) {
-    driver.touchPerform([ {
+    browser.touchPerform([ {
       action: 'press',
       options: from,
     }, {
@@ -143,7 +143,7 @@ class Gestures {
     }, {
       action: 'release',
     } ]);
-    driver.pause(1000);
+    browser.pause(1000);
   }
 
   /**
