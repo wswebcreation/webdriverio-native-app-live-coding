@@ -9,7 +9,7 @@ exports.config = {
     // ==================
     specs: [
         // './test/specs/**/*.js',
-        './test/specs/**/item-list.spec.js',
+        './test/specs/**/webview.spec.js',
     ],
 
     // ============
