@@ -16,7 +16,8 @@ class ItemList {
 
     swagItem(needle){
         const selector = browser.isIOS ?
-            `//*[contains(@value, '${needle}')]//ancestor::*[@name="test-Item"]` :
+            `//XCUIElementTypeOther[@name="test-PRODUCTS"]//*[@name="test-Item"]//*[contains(@value, '${needle}')]//ancestor::*[@name="test-Item"]` :
+            // `//*[contains(@value, '${needle}')]//ancestor::*[@name="test-Item"]` :
             `//*[contains(@text, '${needle}')]//ancestor::*[@content-desc="test-Item"]`;
 
         for(let i = 0; i < 10 ; i++){
