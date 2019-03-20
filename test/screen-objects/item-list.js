@@ -33,7 +33,7 @@ class ItemList {
     addSwagItem(needle){
         const swagAddButton = this.swagItem(needle).$('~test-ADD TO CART');
 
-        Gestures.scrollDownToElement(swagAddButton, 2);
+        Gestures.swipeUpToElement(swagAddButton, 2);
 
         return swagAddButton.click();
     }
@@ -41,11 +41,10 @@ class ItemList {
     removeSwagItem(needle){
         const swagAddButton = this.swagItem(needle).$('~test-REMOVE');
 
-        Gestures.scrollDownToElement(swagAddButton, 2);
+        Gestures.swipeUpToElement(swagAddButton, 2);
 
         return swagAddButton.click();
     }
-
 }
 
 export default new ItemList();
