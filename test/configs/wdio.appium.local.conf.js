@@ -21,7 +21,7 @@ config.capabilities = [
         app: join(process.cwd(), './apps/iOS.Simulator.SauceLabs.Mobile.Sample.app.1.0.0.app.zip'),
         // Read the reset strategies very well, they differ per platform, see
         // http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
-        noReset: true,
+        // noReset: true,
         newCommandTimeout: 240,
         maxInstances: 1,
     },
@@ -36,7 +36,7 @@ config.capabilities = [
         appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
         // Read the reset strategies very well, they differ per platform, see
         // http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
-        noReset: true,
+        // noReset: true,
         newCommandTimeout: 240,
         maxInstances: 1,
     },

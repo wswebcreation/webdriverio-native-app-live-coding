@@ -1,7 +1,7 @@
 {
-  "name": "swisscome-live-session",
+  "name": "live-coding-session",
   "version": "0.0.1",
-  "description": "A Swisscom live coding session",
+  "description": "A live coding session",
   "main": "index.js",
   "scripts": {
     "test.appium.local": "wdio ./test/configs/wdio.appium.local.conf.js"

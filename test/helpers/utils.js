@@ -5,11 +5,11 @@ import { BUNDLE_IDS, DEFAULT_TIMEOUT } from './e2eConstants';
  * the app needs to be reset
  */
 export function restartApp() {
-  if (!driver.firstAppStart) {
-    driver.reset();
+  if (!browser.firstAppStart) {
+    browser.reset();
   }
   // Set the firstAppstart to false to say that the following test can be reset
-  driver.firstAppStart = false;
+  browser.firstAppStart = false;
 }
 
 
@@ -25,7 +25,7 @@ export function getTextOfElement(element, isXpath = false) {
   let visualText;
 
   try {
-    if (driver.isAndroid) {
+    if (browser.isAndroid) {
       visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
     } else {
       const iosElement = isXpath ? element.$$('*//XCUIElementTypeStaticText') : element;
@@ -67,9 +67,9 @@ function getIosAppState() {
     4: 'The application is running in the foreground',
   };
   // Wait 2 second to be sure the app is done going to the background / get the correct status
-  driver.pause(2000);
+  browser.pause(2000);
 
-  const currentAppState = driver.execute('mobile: queryAppState', { bundleId: BUNDLE_IDS.IOS });
+  const currentAppState = browser.execute('mobile: queryAppState', { bundleId: BUNDLE_IDS.IOS });
 
   return appStates[ currentAppState ];
 }
@@ -81,9 +81,9 @@ function getIosAppState() {
  */
 function getCurrentActivity() {
   // Wait 2 second to be sure the app is done going to the background / get the correct status
-  driver.pause(2000);
+  browser.pause(2000);
 
-  return driver.getCurrentActivity();
+  return browser.getCurrentActivity();
 }
 
 
@@ -103,7 +103,7 @@ function openWebPageWithBrowserOnce() {
     // Chrome is most of the time the first
     $$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]/android.widget.LinearLayout')[ 0 ].click();
 
-    driver.pause(500);
+    browser.pause(500);
     return $(justOnceButton).click();
   } catch (e) {
     // It could be that it already opens to the default browser and no check screen is asked
@@ -119,7 +119,7 @@ function openWebPageWithBrowserOnce() {
  *            for sure that the app is put on the background and that for example chrome is opened.
  */
 export function browserIsOpened() {
-  if (driver.isIOS) {
+  if (browser.isIOS) {
     const appState = getIosAppState();
 
     return appState.includes('background') || appState.includes('not running');
@@ -139,12 +139,12 @@ export function browserIsOpened() {
  */
 export function hideKeyboard(element) {
   // The hideKeyboard is not working on ios devices, so take a different approach
-  if (!driver.isKeyboardShown()){
+  if (!browser.isKeyboardShown()){
     return;
   }
 
-  if (driver.isIOS) {
-    return driver.touchAction({
+  if (browser.isIOS) {
+    return browser.touchAction({
       action: 'tap',
       x: 0,
       y: -40,
@@ -153,9 +153,9 @@ export function hideKeyboard(element) {
   }
 
   try {
-    return driver.hideKeyboard('pressKey', 'Done');
+    return browser.hideKeyboard('pressKey', 'Done');
   } catch (e) {
     // Fallback
-    return driver.back();
+    return browser.back();
   }
 }

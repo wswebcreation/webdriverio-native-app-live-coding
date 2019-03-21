@@ -1,6 +1,6 @@
 /**
  * This src is from the appium-boilerplate
- * src: https://github.com/webdriverio/appium-boilerplate/blob/master/tests/helpers/Gestures.js
+ * src: https://github.com/webbrowserio/appium-boilerplate/blob/master/tests/helpers/Gestures.js
  */
 
 let SCREEN_SIZE;
@@ -29,24 +29,26 @@ const SWIPE_DIRECTION = {
 
 class Gestures {
   /**
-   * Check if an element is visible and if not scroll down a portion of the screen to
+   * Check if an element is visible and if not swipe up a portion of the screen to
    * check if it visible after a x amount of scrolls
    *
    * @param {element} element
    * @param {number} maxScrolls
    * @param {number} amount
    */
-  static scrollDownToElement(element, maxScrolls = 10, amount = 0) {
+  static swipeUpToElement(element, maxScrolls = 10, amount = 0) {
     if ((!element.isExisting() || !element.isDisplayed()) && amount <= maxScrolls) {
       this.swipeUp(0.50);
-      this.scrollDownToElement(element, maxScrolls, amount + 1);
+      this.swipeUpToElement(element, maxScrolls, amount + 1);
     } else if (amount > maxScrolls) {
       throw new Error(`The element '${ element }' could not be found or is not visible.`);
     }
   }
 
   /**
-   * Swipe down based on a percentage
+   * Swipe down based on a percentage.
+   * Swipe down means scrolling up on a screen, you put your finger at the bottom of a screen
+   * and swipe to the top of the screen making it scroll down
    *
    * @param {number} percentage from 0 - 1
    */
@@ -58,7 +60,9 @@ class Gestures {
   }
 
   /**
-   * Swipe Up based on a percentage
+   * Swipe Up based on a percentage.
+   * Swipe up means scrolling down on a screen, you put your finger at the top of a screen
+   * and swipe to the bottom of the screen making it scroll up
    *
    * @param {number} percentage from 0 - 1
    */
@@ -70,7 +74,8 @@ class Gestures {
   }
 
   /**
-   * Swipe left based on a percentage
+   * Swipe left based on a percentage.
+   * Swipe left means scrolling from the right to the left of a screen.
    *
    * @param {number} percentage from 0 - 1
    */
@@ -82,7 +87,8 @@ class Gestures {
   }
 
   /**
-   * Swipe right based on a percentage
+   * Swipe right based on a percentage.
+   * Swipe right means scrolling from the left to the right of a screen.
    *
    * @param {number} percentage from 0 - 1
    */
@@ -108,7 +114,7 @@ class Gestures {
    * </pre>
    */
   static swipeOnPercentage(from, to) {
-    SCREEN_SIZE = SCREEN_SIZE || driver.getWindowRect();
+    SCREEN_SIZE = SCREEN_SIZE || browser.getWindowRect();
     const pressOptions = this._getDeviceScreenCoordinates(SCREEN_SIZE, from);
     const moveToScreenCoordinates = this._getDeviceScreenCoordinates(SCREEN_SIZE, to);
     this.swipe(
@@ -131,7 +137,7 @@ class Gestures {
    * </pre>
    */
   static swipe(from, to) {
-    driver.touchPerform([ {
+    browser.touchPerform([ {
       action: 'press',
       options: from,
     }, {
@@ -143,7 +149,7 @@ class Gestures {
     }, {
       action: 'release',
     } ]);
-    driver.pause(1000);
+    browser.pause(1000);
   }
 
   /**
